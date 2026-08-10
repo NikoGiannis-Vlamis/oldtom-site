@@ -23,6 +23,7 @@
     <li><a href="#about">Η Επιχείρηση</a></li>
     <li><a href="#products">Προϊόντα</a></li>
     <li><a href="#how">Πώς Δουλεύουμε</a></li>
+    <li><a href="#order">Παραγγελία</a></li>
     <li><a href="#contact">Επικοινωνία</a></li>
   </ul>
   <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -37,7 +38,7 @@
     <p class="hero-sub">LIQUOR STORE</p>
     <p class="hero-desc">Χονδρική διανομή ποτών, αναψυκτικών &amp; mixers σε bar, εστιατόρια και καφέ σε όλη την Αθήνα. Αξιόπιστη εξυπηρέτηση, γρήγορη παράδοση στο χώρο σας.</p>
     <div class="hero-ctas">
-      <a href="#products" class="btn-primary">Δείτε τα προϊόντα →</a>
+      <a href="#order" class="btn-primary">Κάντε Παραγγελία →</a>
       <a href="#contact" class="btn-ghost">Επικοινωνία</a>
     </div>
   </div>
@@ -132,6 +133,32 @@
       <h3>Παράδοση</h3>
       <p>Παραδίδουμε στο χώρο της επιχείρησής σας, γρήγορα και αξιόπιστα.</p>
     </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section id="order">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Παραγγελία</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="order-grid reveal">
+    <div class="order-note">
+      <p>Συμπληρώστε την παραγγελία σας — <strong>δεν καταχωρείται αυτόματα</strong>. Θα σας καλέσουμε ή θα σας στείλουμε email για επιβεβαίωση πριν την προετοιμασία, ώστε να αποφευχθεί κάθε λάθος σε προϊόν, ποσότητα ή διαθεσιμότητα.</p>
+    </div>
+    <form id="order-form" class="order-form">
+      <input type="text" name="business" placeholder="Επωνυμία επιχείρησης" required>
+      <div class="form-row">
+        <input type="tel" name="phone" placeholder="Τηλέφωνο επικοινωνίας" required>
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <textarea name="items" rows="5" placeholder="Προϊόντα &amp; ποσότητες (π.χ. Johnnie Walker Red 700ml x2, Coca-Cola 250ml x24)" required></textarea>
+      <textarea name="notes" rows="2" placeholder="Σημειώσεις / προτιμώμενη ώρα παράδοσης (προαιρετικό)"></textarea>
+      <button type="submit" class="btn-primary">Αποστολή Παραγγελίας →</button>
+      <p class="form-status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
