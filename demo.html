@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Δοκιμαστική παρουσίαση συστήματος online παραγγελιών για την κάβα OLD TOM.">
+<title>OLD TOM — Demo συστήματος παραγγελιών</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23c9a227' text-anchor='middle'%3EOT%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body class="demo-body">
+
+<div class="demo-banner">
+  <strong>ΔΟΚΙΜΑΣΤΙΚΗ ΠΑΡΟΥΣΙΑΣΗ</strong>
+  <span>Τα προϊόντα, οι τιμές και οι ποσότητες είναι εικονικά. Τίποτα δεν αποθηκεύεται σε server — όλα μένουν σε αυτή τη συσκευή.</span>
+</div>
+
+<header class="demo-top">
+  <a class="brand" href="index.html">OLD<span>TOM</span></a>
+  <div class="demo-top-right">
+    <span id="who" class="who" hidden></span>
+    <button id="btn-reset" type="button" class="mini-btn">Επαναφορά demo</button>
+    <button id="btn-logout" type="button" class="mini-btn logout-btn" hidden>Έξοδος</button>
+  </div>
+</header>
+
+<main class="demo-main">
+
+  <!-- ============ LOGIN ============ -->
+  <section id="view-login">
+    <h1>Σύστημα Παραγγελιών</h1>
+    <p class="lede">Δείτε πώς θα δουλεύει η online παραγγελία, από τη μεριά του πελάτη και από τη μεριά της κάβας.</p>
+
+    <div class="role-grid">
+      <button type="button" class="role-card" data-role="client">
+        <span class="role-tag">Ρόλος 1</span>
+        <span class="role-name">Πελάτης</span>
+        <span class="role-desc">Κάνει παραγγελία και βλέπει το ιστορικό του — π.χ. ένα bar ή εστιατόριο.</span>
+        <span class="role-go">Σύνδεση ως πελάτης →</span>
+      </button>
+      <button type="button" class="role-card" data-role="boss">
+        <span class="role-tag">Ρόλος 2</span>
+        <span class="role-name">Κάβα (Διαχειριστής)</span>
+        <span class="role-desc">Βλέπει όλες τις παραγγελίες, ελέγχει το απόθεμα και εγκρίνει ή απορρίπτει.</span>
+        <span class="role-go">Σύνδεση ως κάβα →</span>
+      </button>
+    </div>
+
+    <details class="creds">
+      <summary>Στοιχεία σύνδεσης (δοκιμαστικά)</summary>
+      <table class="mini-table">
+        <tr><th>Ρόλος</th><th>Χρήστης</th><th>Κωδικός</th></tr>
+        <tr><td>Πελάτης</td><td><code>client</code></td><td><code>client123</code></td></tr>
+        <tr><td>Κάβα</td><td><code>boss</code></td><td><code>boss123</code></td></tr>
+      </table>
+      <p class="fineprint">Σε πραγματικό σύστημα οι κωδικοί δεν φαίνονται ποτέ και δεν αποθηκεύονται σε κείμενο — κρυπτογραφούνται στον server.</p>
+    </details>
+  </section>
+
+  <!-- ============ CLIENT ============ -->
+  <section id="view-client" hidden>
+    <h1>Νέα παραγγελία</h1>
+    <p class="lede">Διαλέξτε προϊόντα και ποσότητες. Πριν σταλεί, θα δείτε ξανά όλη την παραγγελία.</p>
+
+    <div class="panel">
+      <div class="pick-row">
+        <div class="pick-field">
+          <label for="prod">Προϊόν</label>
+          <input id="prod" list="prodlist" placeholder="Γράψτε ή επιλέξτε…" autocomplete="off">
+          <datalist id="prodlist"></datalist>
+        </div>
+        <div class="pick-field qty-field">
+          <label for="qty">Τεμάχια</label>
+          <input id="qty" type="number" value="1" min="1" max="999">
+        </div>
+        <button id="btn-add" type="button" class="gold-btn">Προσθήκη</button>
+      </div>
+      <p id="pick-msg" class="msg" aria-live="polite"></p>
+
+      <div id="cart-wrap" class="cart-wrap"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Στοιχεία παραγγελίας</h2>
+      <div class="form-grid">
+        <div><label for="f-name">Επωνυμία επιχείρησης</label><input id="f-name" value="PKK Jazz Burger Bar"></div>
+        <div><label for="f-phone">Τηλέφωνο</label><input id="f-phone" value="210 591 4933"></div>
+        <div><label for="f-email">Email</label><input id="f-email" type="email" value="info@pkkjazz.gr"></div>
+        <div><label for="f-notes">Σημειώσεις</label><input id="f-notes" placeholder="π.χ. παράδοση πρωί"></div>
+      </div>
+      <button id="btn-submit" type="button" class="gold-btn big">Υποβολή παραγγελίας</button>
+    </div>
+
+    <h2>Οι παραγγελίες μου</h2>
+    <div id="client-orders"></div>
+  </section>
+
+  <!-- ============ BOSS ============ -->
+  <section id="view-boss" hidden>
+    <h1>Παραγγελίες</h1>
+    <p class="lede">Ελέγξτε τι ζητήθηκε και εγκρίνετε ή απορρίψτε. Στην έγκριση γίνεται αυτόματος έλεγχος αποθέματος.</p>
+
+    <div id="boss-stats" class="stats"></div>
+
+    <div class="tabs">
+      <button type="button" class="tab active" data-tab="orders">Παραγγελίες</button>
+      <button type="button" class="tab" data-tab="stock">Αποθήκη</button>
+    </div>
+
+    <div id="tab-orders">
+      <div id="boss-orders"></div>
+    </div>
+
+    <div id="tab-stock" hidden>
+      <div id="stock-table"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="demo-foot">
+  <p>Δοκιμαστική παρουσίαση · OLD TOM Ο.Ε. — <a href="index.html">επιστροφή στη σελίδα</a></p>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <h3 id="modal-title"></h3>
+    <div id="modal-body"></div>
+    <div id="modal-actions" class="modal-actions"></div>
+  </div>
+</div>
+
+<script src="demo.js"></script>
+</body>
+</html>

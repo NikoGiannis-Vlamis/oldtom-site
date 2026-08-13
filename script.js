@@ -18,33 +18,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-const orderForm = document.querySelector('#order-form');
-if (orderForm) {
-  const status = orderForm.querySelector('.form-status');
-  orderForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const submitBtn = orderForm.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    status.textContent = 'Αποστολή...';
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/kava.oldtom@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(orderForm)
-      });
-      if (res.ok) {
-        status.textContent = '✓ Η παραγγελία σας στάλθηκε! Θα επικοινωνήσουμε μαζί σας για επιβεβαίωση.';
-        orderForm.reset();
-      } else {
-        status.textContent = 'Κάτι πήγε στραβά. Δοκιμάστε ξανά ή καλέστε μας στο 216 600 8008.';
-      }
-    } catch (err) {
-      status.textContent = 'Κάτι πήγε στραβά. Δοκιμάστε ξανά ή καλέστε μας στο 216 600 8008.';
-    }
-    submitBtn.disabled = false;
-  });
-}
-
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 if (menuToggle) {
