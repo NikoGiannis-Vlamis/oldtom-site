@@ -493,9 +493,27 @@ function rejectOrder(id) {
 }
 
 /* ============ login / logout / reset ============ */
-function login(role) {
-  const key = role === 'boss' ? 'boss' : 'client';
-  state.session = { user: key, role: USERS[key].role, label: USERS[key].label };
+function tryLogin(e) {
+  e.preventDefault();
+  const u = $('#u').value.trim();
+  const p = $('#p').value;
+  const msg = $('#login-msg');
+
+  const rec = USERS[u.toLowerCase()];
+  // Ένα γενικό μήνυμα, χωρίς να λέμε αν λάθος ήταν ο χρήστης ή ο κωδικός.
+  if (!rec || rec.pass !== p) {
+    msg.className = 'msg err';
+    msg.textContent = 'Λάθος στοιχεία σύνδεσης.';
+    $('#p').value = '';
+    return;
+  }
+
+  msg.textContent = '';
+  msg.className = 'msg';
+  $('#u').value = '';
+  $('#p').value = '';
+
+  state.session = { user: u.toLowerCase(), role: rec.role, label: rec.label };
   cart = [];
   save();
   render();
@@ -510,7 +528,7 @@ function logout() {
 }
 
 function resetDemo() {
-  openModal('Επαναφορά demo',
+  openModal('Καθαρισμός δεδομένων',
     '<p style="font-size:13px;color:var(--text-muted)">Θα σβηστούν όλες οι παραγγελίες και το απόθεμα θα επανέλθει στις αρχικές ποσότητες.</p>',
     [
       { label: 'Άκυρο', onClick: closeModal },
@@ -527,9 +545,7 @@ function resetDemo() {
 }
 
 /* ============ wiring ============ */
-document.querySelectorAll('.role-card').forEach(c =>
-  c.addEventListener('click', () => login(c.dataset.role)));
-
+$('#login-form').addEventListener('submit', tryLogin);
 $('#btn-logout').addEventListener('click', logout);
 $('#btn-reset').addEventListener('click', resetDemo);
 $('#btn-add').addEventListener('click', addToCart);
