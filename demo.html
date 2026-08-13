@@ -59,20 +59,13 @@
     <p class="lede">Διαλέξτε προϊόντα και ποσότητες. Πριν σταλεί, θα δείτε ξανά όλη την παραγγελία.</p>
 
     <div class="panel">
-      <div class="pick-row">
-        <div class="pick-field">
-          <label for="prod">Προϊόν</label>
-          <input id="prod" list="prodlist" placeholder="Γράψτε ή επιλέξτε…" autocomplete="off">
-          <datalist id="prodlist"></datalist>
-        </div>
-        <div class="pick-field qty-field">
-          <label for="qty">Τεμάχια</label>
-          <input id="qty" type="number" value="1" min="1" max="999">
-        </div>
-        <button id="btn-add" type="button" class="gold-btn">Προσθήκη</button>
-      </div>
+      <h2>Τιμοκατάλογος</h2>
+      <div id="products-table"></div>
       <p id="pick-msg" class="msg" aria-live="polite"></p>
+    </div>
 
+    <div class="panel">
+      <h2>Το καλάθι μου</h2>
       <div id="cart-wrap" class="cart-wrap"></div>
     </div>
 
@@ -127,6 +120,9 @@
     <div id="modal-actions" class="modal-actions"></div>
   </div>
 </div>
+
+<!-- Γεμίζει προσωρινά όταν πατηθεί «Εκτύπωση» και τυπώνεται μόνο αυτό. -->
+<div id="print-area" aria-hidden="true"></div>
 
 <script src="demo.js"></script>
 </body>
